@@ -260,7 +260,7 @@
 <body>
   <header class="topbar">
     <nav class="nav wrap" aria-label="Navigasi utama">
-      <a class="brand-logo" href="#home" aria-label="Murrdhn — Home"><img src="/MRR._20261124_104101_0000.png" alt="Murrdhn logo"></a>
+      <a class="brand-logo" href="#home" aria-label="Murrdhn — Home"><img id="headerLogo" src="/light-favicon.png?v=2-dark" alt="Murrdhn logo"></a>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"><span id="themeIcon" aria-hidden="true">☾</span></button>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation menu"><span class="menu-label">MENU</span><span class="menu-icon" aria-hidden="true"><i></i><i></i></span></button>
       <div class="nav-links" id="navLinks">
@@ -471,6 +471,7 @@
     else delete document.documentElement.dataset.theme;
     const updateThemeControl = () => {
       const isDark = document.documentElement.dataset.theme === 'dark';
+      document.getElementById('headerLogo').src = isDark ? '/light-favicon.png?v=2-dark' : '/dark-favicon.png?v=2-light';
       const favicon = document.getElementById('siteFavicon');
       const nextFavicon = favicon.cloneNode();
       nextFavicon.href = isDark ? '/light-favicon.png?v=2-dark' : '/dark-favicon.png?v=2-light';
