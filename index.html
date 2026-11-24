@@ -3,13 +3,284 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Personal website of Murrdhn">
-  <title>Murrdhn</title>
+  <meta name="theme-color" content="#EFE8DD">
+  <meta name="description" content="Portfolio personal Muhammad Raffi Ramadhan — biografi, pendidikan, aktivitas, minat, dan media sosial.">
+  <meta property="og:title" content="Murrdhn — Personal Portfolio">
+  <meta property="og:description" content="A personal space to document my journey, education, projects, and aspirations.">
+  <title>Murrdhn — Personal Portfolio</title>
+  <style>
+    :root {
+      --paper: #EFE8DD;
+      --teal: #76ABAE;
+      --ink: #303841;
+      --blue: #2F4A63;
+      --cream: #EBEBD8;
+      --muted: #68737a;
+      --line: rgba(48, 56, 65, .16);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar { position: sticky; top: 0; z-index: 20; background: rgba(239,232,221,.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-size: 1.18rem; font-weight: 800; letter-spacing: .13em; }
+    .brand span { color: var(--teal); }
+    .nav-links { display: flex; align-items: center; gap: 25px; font-size: .82rem; font-weight: 700; color: var(--blue); }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: #548f93; }
+    .menu-btn { display: none; border: 1px solid var(--line); background: transparent; color: var(--ink); border-radius: 999px; padding: 8px 13px; cursor: pointer; }
+    .hero { padding: 88px 0 76px; display: grid; grid-template-columns: 1.25fr .75fr; gap: 54px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: var(--blue); font-size: .72rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    .eyebrow:before { content: ""; width: 28px; height: 2px; background: var(--teal); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin: 18px 0 16px; max-width: 760px; font-size: clamp(3rem, 7vw, 6.3rem); line-height: .98; letter-spacing: -.065em; font-weight: 800; }
+    h1 .accent { color: var(--blue); font-family: var(--serif); font-weight: 400; font-style: italic; letter-spacing: -.06em; }
+    .hero-copy { max-width: 590px; color: #58636a; font-size: 1.04rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 13px 19px; border-radius: 5px; font-size: .83rem; font-weight: 800; transition: transform .2s, background .2s; border: 1px solid var(--ink); cursor: pointer; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-dark { background: var(--ink); color: var(--cream); }
+    .btn-light { background: transparent; color: var(--ink); }
+    .hero-card { min-height: 390px; background: var(--blue); color: var(--cream); padding: 28px; border-radius: 8px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .hero-card:before, .hero-card:after { content: ""; position: absolute; border: 1px solid rgba(235,235,216,.16); border-radius: 50%; width: 310px; height: 310px; right: -125px; top: -105px; }
+    .hero-card:after { width: 220px; height: 220px; right: -80px; top: -60px; }
+    .card-index { color: var(--teal); font-size: .72rem; font-weight: 800; letter-spacing: .17em; }
+    .monogram { font-size: clamp(6rem, 15vw, 10rem); font-weight: 800; line-height: .9; letter-spacing: -.1em; color: var(--paper); position: relative; z-index: 1; }
+    .card-foot { display: flex; justify-content: space-between; gap: 15px; align-items: end; position: relative; z-index: 1; }
+    .card-foot strong { display: block; font-size: .9rem; }
+    .card-foot small { color: rgba(235,235,216,.68); font-size: .75rem; }
+    .section { padding: 88px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 38px; }
+    .section-head h2 { margin: 10px 0 0; font-size: clamp(2.1rem, 4vw, 3.7rem); letter-spacing: -.055em; line-height: 1.05; }
+    .section-note { max-width: 350px; color: var(--muted); font-size: .9rem; margin-bottom: 3px; }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 55px; }
+    .quote-panel { background: var(--teal); border-radius: 7px; padding: 30px; min-height: 250px; display: flex; flex-direction: column; justify-content: space-between; }
+    .quote-mark { font-family: var(--serif); font-size: 4rem; line-height: .8; color: var(--blue); }
+    .quote-panel blockquote { margin: 24px 0; font-family: var(--serif); font-size: 1.55rem; line-height: 1.25; color: var(--ink); }
+    .quote-panel small { color: rgba(48,56,65,.72); font-weight: 800; letter-spacing: .12em; font-size: .67rem; text-transform: uppercase; }
+    .about-copy { color: #59636a; font-size: 1rem; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 27px; }
+    .fact { border-top: 1px solid var(--line); padding-top: 12px; }
+    .fact small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .65rem; font-weight: 800; }
+    .fact strong { display: block; margin-top: 4px; font-size: .91rem; }
+    .timeline { position: relative; margin-left: 8px; }
+    .timeline:before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--line); }
+    .timeline-item { display: grid; grid-template-columns: 28px 1fr; gap: 20px; padding-bottom: 30px; position: relative; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .dot { width: 15px; height: 15px; background: var(--teal); border: 4px solid var(--paper); outline: 1px solid var(--teal); border-radius: 50%; margin-top: 5px; z-index: 1; }
+    .timeline-content { display: flex; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+    .timeline-content h3 { margin: 0 0 5px; font-size: 1.2rem; }
+    .timeline-content p { color: var(--muted); margin: 0; font-size: .88rem; }
+    .timeline-tag { align-self: start; white-space: nowrap; padding: 5px 10px; background: var(--cream); color: var(--blue); border-radius: 3px; font-size: .7rem; font-weight: 800; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .feature { background: var(--cream); padding: 25px; border-radius: 6px; min-height: 190px; }
+    .feature .num { color: #548f93; font-size: .72rem; font-weight: 800; letter-spacing: .12em; }
+    .feature h3 { margin: 25px 0 8px; font-size: 1.12rem; }
+    .feature p { color: var(--muted); font-size: .84rem; margin: 0; }
+    .social-panel { background: var(--ink); color: var(--cream); padding: 36px; border-radius: 7px; display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+    .social-panel h3 { font-size: clamp(1.5rem, 3vw, 2.4rem); margin: 8px 0; letter-spacing: -.04em; }
+    .social-panel p { color: rgba(235,235,216,.65); margin: 0; font-size: .88rem; }
+    .social-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .social-link { border: 1px solid rgba(235,235,216,.35); padding: 11px 15px; border-radius: 4px; font-size: .8rem; font-weight: 800; transition: background .2s; }
+    .social-link:hover { background: var(--blue); }
+    footer { padding: 28px 0; display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: .75rem; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } * { animation-duration: .01ms !important; } }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 34px, 560px); }
+      .nav { min-height: 68px; }
+      .menu-btn { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 67px; left: 0; right: 0; padding: 18px 24px 22px; background: var(--paper); border-bottom: 1px solid var(--line); flex-direction: column; align-items: start; gap: 16px; }
+      .nav-links.open { display: flex; }
+      .hero { padding: 62px 0 54px; grid-template-columns: 1fr; gap: 35px; }
+      .hero-card { min-height: 280px; }
+      .section { padding: 65px 0; }
+      .section-head { display: block; margin-bottom: 28px; }
+      .section-note { margin-top: 14px; }
+      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature { min-height: auto; }
+      .feature h3 { margin-top: 16px; }
+      .social-panel { display: block; padding: 27px; }
+      .social-links { margin-top: 24px; }
+      .timeline-content { display: block; }
+      .timeline-tag { display: inline-block; margin-top: 12px; }
+      footer { display: block; }
+      footer span { display: block; margin-top: 5px; }
+    }
+    @media print {
+      .topbar, .hero-actions, .social-links, footer .print-hide { display: none !important; }
+      body { background: white; }
+      .wrap { width: 100%; }
+      .hero, .section { padding: 28px 0; }
+      .reveal { opacity: 1; transform: none; }
+      .hero-card, .quote-panel, .social-panel { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
 </head>
 <body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Navigasi utama">
+      <a class="brand" href="#home">MURRDHN<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">MENU ☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">ABOUT</a>
+        <a href="#education">EDUCATION</a>
+        <a href="#activities">ACTIVITIES</a>
+        <a href="#interests">INTERESTS</a>
+        <a href="#socials">SOCIALS</a>
+      </div>
+    </nav>
+  </header>
+
   <main>
-    <h1>Welcome to Murrdhn</h1>
-    <p>Website is under construction.</p>
+    <section class="hero wrap" id="home">
+      <div class="reveal">
+        <span class="eyebrow">PERSONAL PORTFOLIO · INDONESIA</span>
+        <h1>Muhammad Raffi <span class="accent">Ramadhan.</span></h1>
+        <p class="hero-copy">A student with a curiosity for learning, an interest in building meaningful projects, and a belief that every experience is part of a bigger journey.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="#about">EXPLORE PROFILE <span>↗</span></a>
+          <button class="btn btn-light" type="button" onclick="window.print()">PRINT / SAVE CV <span>↗</span></button>
+        </div>
+      </div>
+      <aside class="hero-card reveal" aria-label="Profile monogram">
+        <span class="card-index">01 / INTRODUCTION</span>
+        <div class="monogram">MR<span style="color:var(--teal)">.</span></div>
+        <div class="card-foot">
+          <div><strong>Student · Project Enthusiast</strong><small>Mojokerto, Indonesia</small></div>
+          <small>EST. 2009</small>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">01 — ABOUT ME</span><h2>A little about<br>who I am.</h2></div>
+          <p class="section-note">A short introduction to my background, perspective, and the things that keep me curious.</p>
+        </div>
+        <div class="about-grid">
+          <div class="quote-panel reveal">
+            <span class="quote-mark">“</span>
+            <blockquote>Stay curious. Keep learning. Make every step meaningful.</blockquote>
+            <small>A PERSONAL PRINCIPLE</small>
+          </div>
+          <div class="about-copy reveal">
+            <p>Halo! Saya Muhammad Raffi Ramadhan, seorang pelajar yang senang mengeksplorasi hal baru dan mengembangkan ide menjadi sesuatu yang bermanfaat.</p>
+            <p>Saya tertarik pada dunia pendidikan, pengelolaan keuangan, teknologi digital, dan pengembangan proyek. Di luar kegiatan akademik, saya menikmati perjalanan, memasak, serta mendengarkan musik.</p>
+            <p>Melalui pengalaman belajar dan berbagai proyek kecil, saya ingin terus membangun kemampuan, memperluas perspektif, dan mempersiapkan diri untuk kesempatan di masa depan.</p>
+            <div class="facts">
+              <div class="fact"><small>Based in</small><strong>Mojokerto, Indonesia</strong></div>
+              <div class="fact"><small>Current focus</small><strong>Learning & self-development</strong></div>
+              <div class="fact"><small>Interests</small><strong>Technology · Finance · Travel</strong></div>
+              <div class="fact"><small>Languages</small><strong>Indonesian · English</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">02 — EDUCATION</span><h2>My learning<br>journey.</h2></div>
+          <p class="section-note">Every classroom is a place to discover new perspectives and develop a stronger foundation.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <span class="dot"></span>
+            <div class="timeline-content">
+              <div><h3>SMAN 2 Kota Mojokerto</h3><p>Senior High School · Class X</p><p>Currently continuing my academic journey while exploring interests and school activities.</p></div>
+              <span class="timeline-tag">CURRENT</span>
+            </div>
+          </article>
+          <article class="timeline-item reveal">
+            <span class="dot"></span>
+            <div class="timeline-content">
+              <div><h3>SMPIT Permata</h3><p>Junior High School · IX-A</p><p>Completed junior secondary education and took part in the school's end-of-year graduation programme.</p></div>
+              <span class="timeline-tag">COMPLETED</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="activities">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">03 — ACTIVITIES & PROJECTS</span><h2>Learning by<br>doing.</h2></div>
+          <p class="section-note">A few areas where I have been learning to take responsibility, organize ideas, and build practical solutions.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature reveal"><span class="num">01 / RESPONSIBILITY</span><h3>Class Treasurer</h3><p>Serving as Bendahara 1 for class X-1, with a focus on class-fund records, transaction recaps, and transparent financial administration.</p></article>
+          <article class="feature reveal"><span class="num">02 / DIGITAL PROJECT</span><h3>Treasury X-1</h3><p>A class treasury information project designed to make payment records, balances, and financial recaps easier to access and manage.</p></article>
+          <article class="feature reveal"><span class="num">03 / PERSONAL PROJECT</span><h3>Rama Digital Ecosystem</h3><p>Exploring personal web projects and digital tools as a way to learn, experiment, and organize useful information.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="interests">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="eyebrow">04 — INTERESTS</span><h2>Things that<br>inspire me.</h2></div>
+          <p class="section-note">Interests are always evolving. These are some of the subjects and activities I enjoy exploring.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature reveal"><span class="num">01</span><h3>Technology & Digital</h3><p>Learning about websites, digital products, and how technology can make everyday work more effective.</p></article>
+          <article class="feature reveal"><span class="num">02</span><h3>Finance & Economics</h3><p>Exploring financial literacy, saving, economic ideas, and responsible money management.</p></article>
+          <article class="feature reveal"><span class="num">03</span><h3>Travel, Food & Music</h3><p>Finding inspiration through new places, cooking, different experiences, and music.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="socials">
+      <div class="wrap">
+        <div class="social-panel reveal">
+          <div><span class="eyebrow" style="color:var(--teal)">05 — FIND ME ONLINE</span><h3>Let's stay connected.</h3><p>Follow along with my interests, updates, and selected digital spaces.</p></div>
+          <div class="social-links">
+            <a class="social-link" href="https://www.instagram.com/murrdhn_/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>
+            <a class="social-link" href="https://open.spotify.com/playlist/3UURXStwvh7MTLqXLpgDFm" target="_blank" rel="noopener noreferrer">SPOTIFY ↗</a>
+            <a class="social-link" href="https://github.com/mraffiramadhn" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="wrap">
+    <div><strong>MURRDHN.</strong> © <span id="year"></span> · Personal Portfolio</div>
+    <span>Designed with curiosity in Mojokerto, Indonesia.</span>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
