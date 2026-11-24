@@ -231,12 +231,37 @@
     }
     @keyframes menuDrop { from { opacity: 0; transform: translateY(-7px); } to { opacity: 1; transform: translateY(0); } }
 
+
+    /* Optional dark theme: same layout, reversed color palette */
+    .theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); font-size: 1.15rem; line-height: 1; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+    .theme-toggle:hover { background: var(--cream); color: var(--blue); }
+    html[data-theme="dark"] { color-scheme: dark; --paper: #303841; --teal: #895451; --ink: #EFE8DD; --blue: #EBEBD8; --cream: #2F4A63; --muted: #B5BEC4; --line: rgba(239,232,221,.18); }
+    html[data-theme="dark"] .topbar { background: rgba(48,56,65,.92); }
+    html[data-theme="dark"] .nav-links a:hover { color: #B98A87; }
+    html[data-theme="dark"] .hero-copy,
+    html[data-theme="dark"] .about-copy { color: #C0C8CD; }
+    html[data-theme="dark"] .hero-card:before,
+    html[data-theme="dark"] .hero-card:after { border-color: rgba(47,74,99,.22); }
+    html[data-theme="dark"] .card-foot small { color: rgba(47,74,99,.76); }
+    html[data-theme="dark"] .quote-translation,
+    html[data-theme="dark"] .quote-panel small { color: rgba(239,232,221,.78); }
+    html[data-theme="dark"] .feature .num,
+    html[data-theme="dark"] .experience-item .num { color: #B98A87; }
+    html[data-theme="dark"] .social-panel p { color: rgba(47,74,99,.76); }
+    html[data-theme="dark"] .social-link { border-color: rgba(47,74,99,.38); }
+    html[data-theme="dark"] .social-link:hover { background: #D6D6C4; }
+    html[data-theme="dark"] .menu-btn { border-color: rgba(239,232,221,.25); }
+    @media (prefers-reduced-motion: no-preference) {
+      body, .topbar, .hero-card, .quote-panel, .feature, .social-panel, .timeline-tag, .menu-btn, .theme-toggle { transition: background-color .22s ease, color .22s ease, border-color .22s ease; }
+    }
+
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="nav wrap" aria-label="Navigasi utama">
       <a class="brand-logo" href="#home" aria-label="Murrdhn — Home"><img src="/MRR._20261124_104101_0000.png" alt="Murrdhn logo"></a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" aria-pressed="false"><span id="themeIcon" aria-hidden="true">☾</span></button>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation menu"><span class="menu-label">MENU</span><span class="menu-icon" aria-hidden="true"><i></i><i></i></span></button>
       <div class="nav-links" id="navLinks">
         <a href="#about">ABOUT</a>
@@ -439,6 +464,25 @@
   </footer>
 
   <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const savedTheme = localStorage.getItem('murrdhn-theme');
+    if (savedTheme === 'dark') document.documentElement.dataset.theme = 'dark';
+    const updateThemeControl = () => {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      themeIcon.textContent = isDark ? '☀' : '☾';
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    };
+    updateThemeControl();
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.dataset.theme !== 'dark';
+      if (isDark) document.documentElement.dataset.theme = 'dark';
+      else delete document.documentElement.dataset.theme;
+      localStorage.setItem('murrdhn-theme', isDark ? 'dark' : 'light');
+      updateThemeControl();
+    });
+
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
     menuBtn.addEventListener('click', () => {
