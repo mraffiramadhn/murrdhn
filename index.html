@@ -27,7 +27,7 @@
     button { font: inherit; }
     .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
     .topbar { position: sticky; top: 0; z-index: 20; background: rgba(239,232,221,.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: flex-end; gap: 24px; }
     .brand { font-size: 1.18rem; font-weight: 800; letter-spacing: .13em; }
     .brand span { color: var(--teal); }
     .nav-links { display: flex; align-items: center; gap: 25px; font-size: .82rem; font-weight: 700; color: var(--blue); }
@@ -129,7 +129,6 @@
 <body>
   <header class="topbar">
     <nav class="nav wrap" aria-label="Navigasi utama">
-      <a class="brand" href="#home">MURRDHN<span>.</span></a>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">MENU ☰</button>
       <div class="nav-links" id="navLinks">
         <a href="#about">ABOUT</a>
@@ -145,7 +144,7 @@
     <section class="hero wrap" id="home">
       <div class="reveal">
         <span class="eyebrow">PERSONAL PORTFOLIO · INDONESIA</span>
-        <h1>Muhammad Raffi</h1>
+        <h1>Muhammad Raffi <span class="accent">Ramadhan.</span></h1>
         <p class="hero-copy">A student with a curiosity for learning, an interest in building meaningful projects, and a belief that every experience is part of a bigger journey.</p>
         <div class="hero-actions">
           <a class="btn btn-dark" href="#about">EXPLORE PROFILE <span>↗</span></a>
