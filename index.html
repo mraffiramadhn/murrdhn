@@ -209,12 +209,28 @@
       .social-links { grid-template-columns: 1fr; }
     }
 
+  
+    /* Refined mobile navigation control */
+    .menu-icon { width: 18px; height: 14px; display: inline-flex; flex-direction: column; justify-content: space-between; }
+    .menu-icon i { display: block; width: 18px; height: 1.5px; background: currentColor; transition: transform .22s ease, width .22s ease; }
+    .menu-btn { border: 1px solid rgba(48,56,65,.25); border-radius: 3px; background: var(--ink); color: var(--paper); padding: 11px 14px; gap: 13px; align-items: center; }
+    .menu-btn:hover { background: var(--blue); }
+    .menu-btn.is-open .menu-icon i:first-child { transform: translateY(6.25px) rotate(45deg); }
+    .menu-btn.is-open .menu-icon i:last-child { transform: translateY(-6.25px) rotate(-45deg); }
+    @media screen and (max-width: 760px) {
+      .menu-btn { min-width: 104px; justify-content: space-between; box-shadow: 0 3px 10px rgba(48,56,65,.08); }
+      .menu-label { font-size: .68rem; font-weight: 800; letter-spacing: .13em; }
+      .nav-links { z-index: 30; }
+      .nav-links.open { animation: menuDrop .2s ease-out both; }
+    }
+    @keyframes menuDrop { from { opacity: 0; transform: translateY(-7px); } to { opacity: 1; transform: translateY(0); } }
+
   </style>
 </head>
 <body>
   <header class="topbar">
     <nav class="nav wrap" aria-label="Navigasi utama">
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">MENU ☰</button>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Open navigation menu"><span class="menu-label">MENU</span><span class="menu-icon" aria-hidden="true"><i></i><i></i></span></button>
       <div class="nav-links" id="navLinks">
         <a href="#about">ABOUT</a>
         <a href="#education">EDUCATION</a>
@@ -412,6 +428,8 @@
     menuBtn.addEventListener('click', () => {
       const open = navLinks.classList.toggle('open');
       menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.classList.toggle('is-open', open);
+      menuBtn.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
     });
     navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
       navLinks.classList.remove('open');
