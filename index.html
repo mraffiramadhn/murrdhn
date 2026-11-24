@@ -124,7 +124,17 @@
       .hero-card, .quote-panel, .social-panel { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     }
 
-  </style>
+
+    .experience-list { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
+    .experience-item { padding: 27px 4px 30px; border-bottom: 1px solid var(--line); }
+    .experience-top { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 13px; }
+    .experience-item .num { color: #548f93; font-size: .7rem; font-weight: 800; letter-spacing: .13em; }
+    .experience-date { color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
+    .experience-item h3 { margin: 0 0 4px; font-size: 1.25rem; }
+    .experience-role { color: var(--blue); font-size: .88rem; font-weight: 700; margin: 0 0 13px; }
+    .experience-description { max-width: 850px; color: var(--muted); font-size: .9rem; margin: 0; }
+    @media (max-width: 560px) { .experience-top { align-items: flex-start; flex-direction: column; gap: 5px; } }
+\n  </style>
 </head>
 <body>
   <header class="topbar">
@@ -216,13 +226,28 @@
     <section class="section" id="activities">
       <div class="wrap">
         <div class="section-head reveal">
-          <div><span class="eyebrow">03 — ACTIVITIES & PROJECTS</span><h2>Learning by<br>doing.</h2></div>
-          <p class="section-note">A few areas where I have been learning to take responsibility, organize ideas, and build practical solutions.</p>
+          <div><span class="eyebrow">03 — ORGANIZATION & LEADERSHIP</span><h2>Where I have<br>contributed.</h2></div>
+          <p class="section-note">Organizational experiences that have helped me learn teamwork, responsibility, coordination, and service.</p>
         </div>
-        <div class="feature-grid">
-          <article class="feature reveal"><span class="num">01 / RESPONSIBILITY</span><h3>Class Treasurer</h3><p>Serving as Bendahara 1 for class X-1, with a focus on class-fund records, transaction recaps, and transparent financial administration.</p></article>
-          <article class="feature reveal"><span class="num">02 / DIGITAL PROJECT</span><h3>Treasury X-1</h3><p>A class treasury information project designed to make payment records, balances, and financial recaps easier to access and manage.</p></article>
-          <article class="feature reveal"><span class="num">03 / PERSONAL PROJECT</span><h3>Rama Digital Ecosystem</h3><p>Exploring personal web projects and digital tools as a way to learn, experiment, and organize useful information.</p></article>
+        <div class="experience-list">
+          <article class="experience-item reveal">
+            <div class="experience-top"><span class="num">01 / CURRENT</span><span class="experience-date">JUL 2026 — PRESENT</span></div>
+            <h3>Palang Merah Remaja (PMR)</h3>
+            <p class="experience-role">General Division · SMA Negeri 2 Kota Mojokerto</p>
+            <p class="experience-description">Supported PMR activities by providing first-aid assistance during school ceremonies, contributing to the formation of an emergency response team, and assisting with event preparations. Actively participated in PMR events and supported the team's operational needs.</p>
+          </article>
+          <article class="experience-item reveal">
+            <div class="experience-top"><span class="num">02 / PREVIOUS</span><span class="experience-date">NOV 2024 — NOV 2025</span></div>
+            <h3>Organisasi Siswa Intra Sekolah (OSIS)</h3>
+            <p class="experience-role">Entrepreneurship Division · SMP Islam Terpadu Permata Mojokerto</p>
+            <p class="experience-description">Planned and organized entrepreneurship programs and activities. Collaborated with fellow student council members to support school events and student engagement initiatives.</p>
+          </article>
+          <article class="experience-item reveal">
+            <div class="experience-top"><span class="num">03 / PREVIOUS</span><span class="experience-date">NOV 2023 — NOV 2024</span></div>
+            <h3>Organisasi Siswa Intra Sekolah (OSIS)</h3>
+            <p class="experience-role">Sports and Health Division · SMP Islam Terpadu Permata Mojokerto</p>
+            <p class="experience-description">Supported the planning and implementation of sports activities, health campaigns, and student wellness programs. Collaborated with fellow student council members to coordinate school events and encourage student participation.</p>
+          </article>
         </div>
       </div>
     </section>
